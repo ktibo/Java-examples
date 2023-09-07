@@ -26,7 +26,7 @@ public class Main {
             //dataOut.writeInt(1234);
             int ssssssss = dataIn.readInt();
             System.out.println(ssssssss);
-            System.out.println("OK");
+            System.out.println("OK1");
 
         }catch (Exception e){
             System.out.println("fuck");
