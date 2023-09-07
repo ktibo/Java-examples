@@ -24,8 +24,8 @@ public class Main {
              DataInputStream dataIn = new DataInputStream(new FileInputStream("C:\\test\\des.txt"));
         ) {
             //dataOut.writeInt(1234);
-            int ss = dataIn.readInt();
-            System.out.println(ss);
+            int sss = dataIn.readInt();
+            System.out.println(sss);
             System.out.println("OK");
 
         }catch (Exception e){
