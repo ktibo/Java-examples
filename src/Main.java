@@ -20,13 +20,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("C:\\test\\des.txt"));
-             DataInputStream dataIn = new DataInputStream(new FileInputStream("C:\\test\\des.txt"));
-        ) {
-            //dataOut.writeInt(1234);
-            int ssssssss = dataIn.readInt();
-            System.out.println(ssssssss);
-            System.out.println("OK1");
+        try (RandomAccessFile raf = new RandomAccessFile("C:\\test\\des.txt", "rw")) {
+            raf.writeBoolean(true);
+            raf.writeBoolean(false);
+
+            raf.seek(1);
+            boolean b = raf.readBoolean();
+
+            System.out.println(b);
 
         }catch (Exception e){
             System.out.println("fuck");
