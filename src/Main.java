@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        try (RandomAccessFile raf = new RandomAccessFile("C:\\test\\des.txt", "rw")) {
+        try (RandomAccessFile raf = new RandomAccessFile("C:\\test\\src.txt", "rw")) {
             raf.writeBoolean(true);
             raf.writeBoolean(false);
 
