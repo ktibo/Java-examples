@@ -7,12 +7,13 @@ public class Main {
 
         while (true) {
 
-            System.out.println("Enter a number.\n" +
-                    "1: randomAccessFile\n"+
-                    "2: bufferredReader"
-            );
+            StringBuilder menu = new StringBuilder("Enter a number.\n");
+            menu.append("1: randomAccessFile\n");
+            menu.append("2: bufferredReader\n");
+            menu.append("3: PrintWriter\n");
+            menu.append("0: Quit");
 
-            System.out.println("0: Quit");
+            System.out.println(menu);
 
             int option;
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -36,6 +37,9 @@ public class Main {
                 case 2:
                     bufferredReader();
                     break;
+                case 3:
+                    printWriter();
+                    break;
                 default:
                     System.out.println("Option " + option + " isn't specified!");
             }
@@ -44,7 +48,12 @@ public class Main {
 
     }
 
+    private static void printWriter() {
 
+        PrintWriter pw = new PrintWriter(System.out, true);
+        pw.println("printWriter()");
+
+    }
 
     private static void randomAccessFile() {
 
