@@ -3,17 +3,21 @@ import java.io.*;
 
 public class Main {
 
+    static final String PATH = "C:\\test\\"; // Default file path
+
     public static void main(String... args) {
 
         while (true) {
 
-            StringBuilder menu = new StringBuilder("Enter a number.\n");
+            StringBuilder menu = new StringBuilder();
+            menu.append("0: Quit\n");
             menu.append("1: randomAccessFile\n");
             menu.append("2: bufferredReader\n");
-            menu.append("3: PrintWriter\n");
-            menu.append("0: Quit");
+            menu.append("3: printWriter\n");
+            menu.append("4: file operations\n");
+            menu.append("Choose an option: ");
 
-            System.out.println(menu);
+            System.out.print(menu);
 
             int option;
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -40,10 +44,44 @@ public class Main {
                 case 3:
                     printWriter();
                     break;
+                case 4:
+                    fileOperations();
+                    break;
                 default:
                     System.out.println("Option " + option + " isn't specified!");
             }
 
+        }
+
+    }
+
+    private static void fileOperations() {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String fileName;
+        try {
+            System.out.print("Enter txt-file name in \""+PATH+"\" : ");
+            fileName = bf.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        System.out.println("Enter some data...");
+
+        // The stream will be closed automatically after try-block
+        try (FileWriter fw = new FileWriter(PATH+fileName+".txt", true)) {
+
+            String str;
+
+            do {
+                str = bf.readLine();
+                if (!str.isEmpty())
+                    fw.write(str+"\n");
+            } while (!str.isEmpty());
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -59,15 +97,15 @@ public class Main {
 
         String fileName;
         try {
-            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Enter file name: ");
-            fileName = input.readLine();
+            BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Enter .txt file name in \""+PATH+"\" : ");
+            fileName = bf.readLine();
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        try (RandomAccessFile raf = new RandomAccessFile("C:\\test\\"+fileName+".txt", "rw")) {
+        try (RandomAccessFile raf = new RandomAccessFile(PATH+fileName+".txt", "rw")) {
             //raf.seek(100);
             raf.writeBoolean(true);
             raf.writeBoolean(false);
