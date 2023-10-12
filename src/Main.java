@@ -57,28 +57,47 @@ public class Main {
 
     private static void fileOperations() {
 
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        String fileName;
-        try {
-            System.out.print("Enter txt-file name in \""+PATH+"\" : ");
-            fileName = bf.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String filePath;
 
-        System.out.println("Enter some data...");
+        do {
+            try {
+                System.out.print("Enter txt-file name in \"" + PATH + "\" : ");
+                String fileName = br.readLine();
+                filePath = PATH + fileName + ".txt";
+
+                if (!(new File(filePath)).isFile())
+                    System.out.println("Incorrect file \"" + filePath + "\"!");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+        } while (!(new File(filePath)).isFile());
+
+        System.out.println("Enter some data in \""+filePath+"\"");
 
         // The stream will be closed automatically after try-block
-        try (FileWriter fw = new FileWriter(PATH+fileName+".txt", true)) {
+        try (FileWriter fw = new FileWriter(filePath, true)) {
 
             String str;
+            while (!(str = br.readLine()).isEmpty()) {
+                fw.write(str + "\n");
+            }
 
-            do {
-                str = bf.readLine();
-                if (!str.isEmpty())
-                    fw.write(str+"\n");
-            } while (!str.isEmpty());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Your file:");
+
+        try (BufferedReader brfr = new BufferedReader(new FileReader(filePath))) {
+
+            String str;
+            while ((str = brfr.readLine()) != null){
+                System.out.println(str);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
