@@ -1,7 +1,7 @@
 
 import java.io.*;
 
-public class Main {
+public class Streams {
 
     static final String PATH = "C:\\test\\"; // Default file path
 
