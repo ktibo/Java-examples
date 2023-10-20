@@ -32,13 +32,19 @@ public class ThreadsExamples {
 
     private static void createNewThread() throws InterruptedException {
         System.out.println("createNewThread() start");
-        MyThread my = new MyThread("thread1");
-        java.lang.Thread thread = new java.lang.Thread(my);
-        java.lang.Thread thread1 = new java.lang.Thread(my);
-        thread.start();
-        thread1.start();
+       // MyThread my = new MyThread("thread1");
+        //Thread thread = new Thread(my, "thread");
+        //Thread thread1 = new Thread(my);
+       // thread.start();
+        //thread1.start();
+        MyThread my2 =MyThread.createAndStart("my test thread");
         System.out.println("Waiting 1 sec...");
-        java.lang.Thread.sleep(1000);
+        Thread.sleep(1000);
+
+        MyExtendedThread myExt = new MyExtendedThread();
+        myExt.start();
+
+
         System.out.println("createNewThread() end");
     }
 
