@@ -1,6 +1,8 @@
+
 public class MyThread implements Runnable {
 
-    private String name;
+    private final String name;
+    int counter = 0;
 
     public MyThread(String name){
         this.name = name;
@@ -9,7 +11,18 @@ public class MyThread implements Runnable {
     @Override
     public void run() {
 
-        System.out.println("Thread \""+name+"\" started.");
+        String currentThread = "currentThread \""+Thread.currentThread().getName()+"\" (obj \""+name+"\")";
+        System.out.println(currentThread+" started.");
+
+        for (int i = 0; i < 10; i++) {
+
+            System.out.println(currentThread +" , counter = "+counter++);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 }

@@ -6,6 +6,10 @@ public class TestClass implements MyInterface {
         System.out.println("TestClass");
     }
 
+    public static void main(String[] args) {
+        int a = 4;
+    }
+
     public static void showMessage(String msg){
         System.out.println(msg);
 
