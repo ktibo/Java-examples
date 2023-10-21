@@ -17,20 +17,42 @@ public class MyThread implements Runnable {
         return myThread;
 
     }
+    public static MyThread createAndStart(String name, int newPriority){
+
+        MyThread myThread = new MyThread(name);
+        myThread.thread.setPriority(newPriority);
+        myThread.thread.start();
+        return myThread;
+
+    }
+    public static MyThread createAndStart(String name, Thread waitThread){
+
+        MyThread myThread = new MyThread(name);
+        //if (waitThread != null && waitThread.isAlive()){
+        try {
+            waitThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        myThread.thread.start();
+        //}
+        return myThread;
+
+    }
     @Override
     public void run() {
 
         //String currentThread = "currentThread \""+Thread.currentThread().getName()+"\" (obj \""+name+"\")";
         System.out.println(thread.getName()+" started.");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
 
             System.out.println(thread.getName() +", counter = "+counter++);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(5);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
 
     }

@@ -24,7 +24,7 @@ public class ThreadsExamples {
                     break;
                 default:
                     System.out.println("Didn't recognize an option \"" + str + "\". Try again.");
-            }
+            }break;
 
         }
 
@@ -37,13 +37,17 @@ public class ThreadsExamples {
         //Thread thread1 = new Thread(my);
        // thread.start();
         //thread1.start();
-        MyThread my2 =MyThread.createAndStart("my test thread");
-        System.out.println("Waiting 1 sec...");
-        Thread.sleep(1000);
 
-        MyExtendedThread myExt = new MyExtendedThread();
-        myExt.start();
+        //System.out.println("Waiting 1 sec...");
+        //Thread.sleep(1000);
+        MyThread my1 =MyThread.createAndStart("MAX_PRIORITY", Thread.MAX_PRIORITY);
+        MyThread my2=MyThread.createAndStart("MIN_PRIORITY", Thread.MIN_PRIORITY);
 
+        //MyExtendedThread myExt = new MyExtendedThread();
+        //myExt.start();
+        //Thread.sleep(1000);
+
+        //MyThread my1 =MyThread.createAndStart("my test thread", myExt);
 
         System.out.println("createNewThread() end");
     }
