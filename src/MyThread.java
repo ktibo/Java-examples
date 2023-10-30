@@ -3,9 +3,11 @@ public class MyThread implements Runnable {
 
     Thread thread;
     int counter = 0;
+
     public MyThread(){
         thread = new Thread(this);
     }
+
     public MyThread(String name){
         thread = new Thread(this, name);
     }
@@ -45,15 +47,21 @@ public class MyThread implements Runnable {
         //String currentThread = "currentThread \""+Thread.currentThread().getName()+"\" (obj \""+name+"\")";
         System.out.println(thread.getName()+" started.");
 
-        for (int i = 0; i < 1000; i++) {
-
-            System.out.println(thread.getName() +", counter = "+counter++);
+       // ThreadsExamples.testClass.mySynchronizedMethod(thread.getName());
+        if (thread.getName().equals("my1")) {
+            TestClass.staticMethod();
+        } else {
+            TestClass.staticMethod2();
+        }
+//        for (int i = 0; i < 10; i++) {
+//
+//            System.out.println(thread.getName() +", counter = "+counter++);
 //            try {
 //                Thread.sleep(5);
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
-        }
+//        }
 
     }
 }
