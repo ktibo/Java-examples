@@ -9,8 +9,9 @@ public class TestClass implements MyInterface {
         System.out.println("TestClass");
     }
 
-    synchronized public static void staticMethod(){
-        System.out.println("staticMethod() thread: "+Thread.currentThread().getName());
+    public static void staticMethod(){
+        String threadName = Thread.currentThread().getName();
+        System.out.println("staticMethod() thread: "+ threadName);
         int counter = 0;
         for (int i = 0; i < 10; i++) {
             System.out.println("counter: "+counter++);
@@ -21,6 +22,7 @@ public class TestClass implements MyInterface {
             }
         }
     }
+    
     synchronized public static void staticMethod2(){
         System.out.println("staticMethod2() thread: "+Thread.currentThread().getName());
         int counter = 0;
@@ -62,12 +64,14 @@ public class TestClass implements MyInterface {
     }
 
     @Override
-     synchronized public void mySynchronizedMethod(String param) {
-        System.out.println("mySynchronizedMethod() thread: "+param);
+     synchronized public void mySynchronizedMethod(String threadName) {
+        System.out.println("mySynchronizedMethod() thread: "+threadName);
         int counter = 0;
         for (int i = 0; i < 10; i++) {
             System.out.println("counter: "+counter++);
             try {
+                notify();
+                if (i == 5 && threadName.equals("my1")) wait(); // test
                 Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();

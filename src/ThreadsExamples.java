@@ -1,12 +1,12 @@
 import java.io.*;
+import java.sql.SQLOutput;
+import java.util.stream.IntStream;
 
 public class ThreadsExamples {
 
     static TestClass testClass = new TestClass();
 
     public static void main(String[] args) throws Exception {
-
-
 
         while (true) {
 
@@ -45,8 +45,11 @@ public class ThreadsExamples {
         //System.out.println("Waiting 1 sec...");
         //Thread.sleep(1000);
 
-        MyThread.createAndStart("my1");
-        MyThread.createAndStart("my2");
+        MyThread my1 = MyThread.createAndStart("my1");
+        MyThread my2 = MyThread.createAndStart("my2");
+
+        my1.thread.join();
+        my2.thread.join();
 
         //MyExtendedThread myExt = new MyExtendedThread();
         //myExt.start();

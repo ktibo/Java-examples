@@ -45,14 +45,15 @@ public class MyThread implements Runnable {
     public void run() {
 
         //String currentThread = "currentThread \""+Thread.currentThread().getName()+"\" (obj \""+name+"\")";
-        System.out.println(thread.getName()+" started.");
+        String threadName = thread.getName();
+        System.out.println(threadName +" started.");
 
-       // ThreadsExamples.testClass.mySynchronizedMethod(thread.getName());
-        if (thread.getName().equals("my1")) {
-            TestClass.staticMethod();
-        } else {
-            TestClass.staticMethod2();
-        }
+       ThreadsExamples.testClass.mySynchronizedMethod(threadName);
+        //if (thread.getName().equals("my1")) {
+           // TestClass.staticMethod();
+            //} else {
+            //TestClass.staticMethod2();
+        //}
 //        for (int i = 0; i < 10; i++) {
 //
 //            System.out.println(thread.getName() +", counter = "+counter++);
