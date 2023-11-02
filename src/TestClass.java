@@ -63,16 +63,25 @@ public class TestClass implements MyInterface {
         return str.clone();
     }
 
+    synchronized public  void awake(){
+        notify();
+    }
+
     @Override
-     synchronized public void mySynchronizedMethod(String threadName) {
-        System.out.println("mySynchronizedMethod() thread: "+threadName);
+     synchronized public void mySynchronizedMethod(MyThread myThread) {
+        Thread currentThread = Thread.currentThread();
+        System.out.println("mySynchronizedMethod() thread: "+currentThread.getName());
         int counter = 0;
+
         for (int i = 0; i < 10; i++) {
             System.out.println("counter: "+counter++);
             try {
-                notify();
-                if (i == 5 && threadName.equals("my1")) wait(); // test
-                Thread.sleep(5);
+                while (myThread.isSuspended()) {
+                    wait();
+                }
+                //notify();
+                //if (i == 5 && threadName.equals("my1")) wait(); // test
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
