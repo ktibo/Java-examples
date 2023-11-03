@@ -21,6 +21,7 @@ public class MyThread implements Runnable {
     public static MyThread createAndStart(String name) {
 
         MyThread myThread = new MyThread(name);
+        myThread.thread.setUncaughtExceptionHandler(new MyHandler());
         myThread.thread.start();
         return myThread;
 
@@ -65,7 +66,7 @@ public class MyThread implements Runnable {
         //String currentThread = "currentThread \""+Thread.currentThread().getName()+"\" (obj \""+name+"\")";
         String threadName = thread.getName();
         System.out.println(threadName + " started.");
-
+        //throw  new RuntimeException("ops");
         ThreadsExamples.testClass.mySynchronizedMethod(this);
         //if (thread.getName().equals("my1")) {
         // TestClass.staticMethod();
@@ -83,4 +84,13 @@ public class MyThread implements Runnable {
 //        }
 
     }
+}
+
+class MyHandler implements Thread.UncaughtExceptionHandler {
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        System.out.println("MyHandler! Thread \""+t+"\" : "+e);
+    }
+
 }

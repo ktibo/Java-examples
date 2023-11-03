@@ -1,6 +1,6 @@
 import java.io.*;
 import java.sql.SQLOutput;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class ThreadsExamples {
 
@@ -35,8 +35,12 @@ public class ThreadsExamples {
     }
 
     private static void createNewThread() throws InterruptedException {
-        System.out.println("createNewThread() start");
+        //System.out.println("createNewThread() start");
 
+//        MyExtendedThread my0 = new MyExtendedThread();
+//        my0.start();
+//        MyExtendedThread my01 = new MyExtendedThread();
+//        my01.start();
         //System.out.println("Waiting 1 sec...");
         //Thread.sleep(1000);
 
@@ -44,13 +48,14 @@ public class ThreadsExamples {
         //MyThread my2 = MyThread.createAndStart("my2");
         Thread.sleep(300);
         my1.suspend();
+        //my1.thread.interrupt();
         Thread.sleep(2000);
         my1.continueThread();
 
         my1.thread.join();
         //my2.thread.join();
 
-        System.out.println("createNewThread() end");
+        //System.out.println("createNewThread() end");
     }
 
 }

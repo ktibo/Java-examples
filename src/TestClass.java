@@ -81,6 +81,7 @@ public class TestClass implements MyInterface {
                 }
                 //notify();
                 //if (i == 5 && threadName.equals("my1")) wait(); // test
+                //if (i == 50 && myThread.thread.isInterrupted()) break; // test
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
